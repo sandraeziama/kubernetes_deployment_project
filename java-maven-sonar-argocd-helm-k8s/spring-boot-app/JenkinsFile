@@ -25,12 +25,14 @@ pipeline {
         stage('Create an EKS Cluster') {
             steps {
                 withCredentials([string(credentialsId: 'AWS_Access', variable: 'AWS_ACCESS_KEY_ID'),
-                    string(credentialsId: 'AWS_Access', variable: 'AWS_SECRET_ACCESS_KEY')
-                ]) {
+            /* groovylint-disable-next-line DuplicateStringLiteral */
+            string(credentialsId: 'AWS_Access', variable: 'AWS_SECRET_ACCESS_KEY')
+        ]) {
                     sh 'cd java-maven-sonar-argocd-helm-k8s/terraform /terraform init'
                     sh 'cd java-maven-sonar-argocd-helm-k8s/terraform /terraform apply --auto-approve'
-                }
+        }
             }
+        }
 
             stage('Build and Test') {
                 steps {
@@ -66,26 +68,26 @@ pipeline {
                     script {
                         /* groovylint-disable-next-line NestedBlockDepth */
                         environment {
+                            /* groovylint-disable-next-line DuplicateStringLiteral */
                             AWS_DEFAULT_REGION = 'us-east-1'
                             /* groovylint-disable-next-line LineLength */
                             /* groovylint-disable-next-line GStringExpressionWithinString, }           GStringExpressionWithinString */
                             sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && docker build -t ${DOCKER_IMAGE} .'
                             /* groovylint-disable-next-line NoDef, VariableTypeRequired */
                             def dockerImage = docker.image("${DOCKER_IMAGE}")
-                            /* groovylint-disable-next-line NestedBlockDepth */
+                            /* groovylint-disable-next-line DuplicateStringLiteral, NestedBlockDepth */
                             docker.withRegistry('https://index.docker.io/v1/', 'docker-cred') {
                                 dockerImage.push()
                             }
-                        }
                     }
                 }
+            }
 
                 stage('Update Deployment File') {
                     /* groovylint-disable-next-line NestedBlockDepth */
                     environment {
                         GIT_REPO_NAME = 'kubernetes_deployment_project'
                         GIT_USER_NAME = 'EziamaUgonna'
-
                     }
                     /* groovylint-disable-next-line NestedBlockDepth */
                     steps {
@@ -106,7 +108,7 @@ pipeline {
                         }
                     }
                 }
-            }
-        }
     }
 }
+    }
+
