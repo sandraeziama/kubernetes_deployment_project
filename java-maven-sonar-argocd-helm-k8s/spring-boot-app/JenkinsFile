@@ -79,8 +79,8 @@ pipeline {
                         withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                     /* groovylint-disable-next-line GStringExpressionWithinString */
                             sh '''
-                    git config user.email "abhishek.xyz@gmail.com"
-                    git config user.name "Abhishek Veeramalla"
+                    git config user.email "elvindavin@gmail.com"
+                    git config user.name "EziamaUgonna"
                     BUILD_NUMBER=${BUILD_NUMBER}
                     /* groovylint-disable-next-line LineLength */
                     sed -i "s/replaceImageTag/${BUILD_NUMBER}/g" java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
