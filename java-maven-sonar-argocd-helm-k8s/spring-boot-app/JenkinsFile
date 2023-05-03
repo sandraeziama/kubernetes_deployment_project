@@ -94,8 +94,7 @@ pipeline {
           /* groovylint-disable-next-line NestedBlockDepth */
           withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
             /* groovylint-disable-next-line GStringExpressionWithinString */
-            sh ''
-            '
+            sh '''
             git config user.email "elvindavin@gmail.com"
             git config user.name "EziamaUgonna"
             BUILD_NUMBER = $ {
@@ -107,8 +106,7 @@ pipeline {
             git add java - maven - sonar - argocd - helm - k8s / spring - boot - app - manifests / deployment.yml
             git commit - m "Update deployment image to version ${BUILD_NUMBER}"
             git push https: //${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
-              ''
-            '
+            '''
           }
         }
       }
