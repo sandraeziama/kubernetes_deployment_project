@@ -84,7 +84,7 @@ pipeline {
         }
     }
 
-            stage('Update Deployment File') {
+        stage('Update Deployment File') {
         /* groovylint-disable-next-line NestedBlockDepth */
                 environment {
                     GIT_REPO_NAME = 'kubernetes_deployment_project'
