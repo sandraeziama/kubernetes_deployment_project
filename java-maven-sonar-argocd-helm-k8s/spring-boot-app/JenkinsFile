@@ -45,7 +45,7 @@ pipeline {
             stage('Static Code Analysis') {
     /* groovylint-disable-next-line GStringExpressionWithinString */
                 environment {
-                    SONAR_URL = 'http://ec2-44-201-77-93.compute-1.amazonaws.com:9000'
+                    SONAR_URL = 'http://http://ec2-44-201-221-64.compute-1.amazonaws.com:9000'
                 }
 
                 steps {
