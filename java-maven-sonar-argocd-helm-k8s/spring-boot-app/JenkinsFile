@@ -82,7 +82,6 @@ pipeline {
                 }
             }
         }
-    }
 
         stage('Update Deployment File') {
         /* groovylint-disable-next-line NestedBlockDepth */
@@ -108,7 +107,7 @@ pipeline {
             git commit - m "Update deployment image to version ${BUILD_NUMBER}"
             git push https: //${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
             '''
-                    }
                 }
             }
+    }   }
 }
