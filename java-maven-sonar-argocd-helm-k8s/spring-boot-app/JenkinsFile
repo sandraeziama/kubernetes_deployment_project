@@ -22,7 +22,7 @@ pipeline {
                     secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
                     credentialsId: 'Jenkincred'
                 ]]) {
-                    dir('java-maven-sonar-argocd-helm-k8s/spring-boot-app') {
+                    dir('terraform') {
                         sh 'terraform init'
                         sh 'terraform plan'
                         sh 'terraform apply -auto-approve'
